@@ -1,24 +1,17 @@
 const {
+  createKennel,
+  getKennelById,
   getAllKennels,
-//   getContact,
-//   createContact,
-//   deleteContact,
-//   contactToUpdate,
-//   contactStatusToUpdate,
-} = require("./kennels");
+  deleteKennelById,
+  deleteAllKennel,
+  findAllPetsInKennel,
+} = require("./kennels/kennel.controller");
 
 module.exports = {
+  createKennel,
+  getKennelById,
   getAllKennels,
-  //   getContact,
-  //   createContact,
-  //   deleteContact,
-  //   contactToUpdate,
-  //   contactStatusToUpdate,
-  //   signup,
-  //   login,
-  //   logout,
-  //   current,
-  //   updateAvatar,
-  //   verifyEmail,
-  //   reVerifyEmail,
+  deleteKennelById,
+  deleteAllKennel,
+  findAllPetsInKennel,
 };

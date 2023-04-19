@@ -2,7 +2,7 @@ const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
 
-// const kennelsRouter = require("./routes/api/kennels");
+const kennelsRouter = require("./routes/api/kennels/v1/kennels.routes");
 // const { authRouter } = require("./routes/api/owners");
 // const petsRouter = require("./routes/api/pets");
 
@@ -14,7 +14,7 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 
-// app.use("/api/kennels", kennelsRouter);
+app.use("/api/kennels", kennelsRouter);
 // app.use("/api/owners", authRouter);
 // app.use("/api/pets", petsRouter);
 
