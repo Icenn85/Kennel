@@ -16,7 +16,7 @@ router.post(
 router.get("/:id", isValidId, ctrl.getKennelById);
 router.get("/", ctrl.getAllKennels);
 router.delete("/:id", isValidId, ctrl.deleteKennelById);
-router.delete("/", ctrl.deleteAllKennel);
+router.delete("/", ctrl.deleteAllKennels);
 router.get("/:id/pets", ctrl.findAllPetsInKennel);
 
 

@@ -4,7 +4,7 @@ const cors = require("cors");
 
 const kennelsRouter = require("./routes/api/kennels/v1/kennels.routes");
 // const { authRouter } = require("./routes/api/owners");
-// const petsRouter = require("./routes/api/pets");
+const petsRouter = require("./routes/api/pets/v1/pets.routes");
 
 const app = express();
 
@@ -16,7 +16,7 @@ app.use(express.json());
 
 app.use("/api/kennels", kennelsRouter);
 // app.use("/api/owners", authRouter);
-// app.use("/api/pets", petsRouter);
+app.use("/api/pets", petsRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });

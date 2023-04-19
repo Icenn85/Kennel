@@ -1,5 +1,5 @@
 const { HttpError, tryCatchWrapper } = require("../../helpers");
-const { Kennel } = require("../../models");
+const { Kennel } = require("../../helpers");
 
 async function createKennel(req, res, next) {
   const { name, capacity, pets, address } = req.body;
@@ -40,7 +40,7 @@ const deleteKennelById = async (req, res) => {
   return res.status(200).json({ message: "Kennel deleted successfully" });
 };
 
-const deleteAllKennel = async (req, res) => {
+const deleteAllKennels = async (req, res) => {
   const kennels = await Kennel.deleteMany({});
   if (!kennels) {
     return next(HttpError(404, "Kennels not found"));
@@ -64,6 +64,6 @@ module.exports = {
   getKennelById: tryCatchWrapper(getKennelById),
   getAllKennels,
   deleteKennelById: tryCatchWrapper(deleteKennelById),
-  deleteAllKennel: tryCatchWrapper(deleteAllKennel),
+  deleteAllKennels: tryCatchWrapper(deleteAllKennels),
   findAllPetsInKennel: tryCatchWrapper(findAllPetsInKennel),
 };
