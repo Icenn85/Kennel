@@ -3,7 +3,7 @@ const { Pet } = require("../../../models");
 
 async function createPet(req, res, next) {
   const { nickname, age, owner, kennel, birthday } = req.body;
-  if (!nickname || !owner || !kennel) {
+  if (!nickname) {
     return next(HttpError(400, "missing required name field"));
   }
   const newPet = await Pet.create({
@@ -42,8 +42,8 @@ const deletePetById = async (req, res) => {
 };
 
 const deleteAllPets = async (req, res) => {
-  const pets = await Kennel.deleteMany({});
-  if (!kennels) {
+  const pets = await Pet.deleteMany({});
+  if (!pets) {
     return next(HttpError(404, "Pets not found"));
   }
   return res.status(200).json({ message: "Pets deleted successfully" });

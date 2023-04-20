@@ -9,7 +9,6 @@ const petSchema = new Schema(
       type: String,
       required: [true, "Nickname is required"],
       minlength: [3, "Name must be atleast 3 letters"],
-      unique: true,
     },
     age: {
       type: Number,
@@ -17,12 +16,12 @@ const petSchema = new Schema(
     owner: {
       type: Schema.Types.ObjectId,
       ref: "Owner",
-      required: true,
+    //   required: true,
     },
     kennel: {
       type: Schema.Types.ObjectId,
       ref: "Kennel",
-      required: true,
+    //   required: true,
     },
     birthday: {
       type: String,
