@@ -1,5 +1,5 @@
 const { HttpError, tryCatchWrapper } = require("../../helpers");
-const { Kennel } = require("../../helpers");
+const { Kennel } = require("../../models/index");
 
 async function createKennel(req, res, next) {
   const { name, capacity, pets, address } = req.body;
@@ -16,8 +16,8 @@ async function createKennel(req, res, next) {
 }
 
 const getKennelById = async (req, res) => {
-  const { kennelId } = req.params;
-  const kennel = await Kennel.findById(kennelId);
+  const { id } = req.params;
+  const kennel = await Kennel.findById(id);
   if (!kennel) {
     return next(HttpError(404, "Kennel not found"));
   }
@@ -32,8 +32,8 @@ async function getAllKennels(req, res) {
 }
 
 const deleteKennelById = async (req, res) => {
-  const { kennelId } = req.params;
-  const kennel = await Kennel.findByIdAndRemove(kennelId);
+  const { id } = req.params;
+  const kennel = await Kennel.findByIdAndRemove(id);
   if (!kennel) {
     return next(HttpError(404, "Kennel not found"));
   }
@@ -49,8 +49,8 @@ const deleteAllKennels = async (req, res) => {
 };
 
 const findAllPetsInKennel = async (req, res) => {
-  const { kennelId } = req.params;
-  const kennel = await Kennel.findById(kennelId).populate("pets").exec((err, kennel) => {
+  const { id } = req.params;
+  const kennel = await Kennel.findById(id).populate("pets").exec((err, kennel) => {
     if (!kennel) {
       return next(HttpError(404, "Pets not found"));
     }

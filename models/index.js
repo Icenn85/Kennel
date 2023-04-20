@@ -1,9 +1,11 @@
-const { Kennel, kennelSchemas } = require("./kennel");
-const { Pet, petSchemas } = require("./pet");
+const { Kennel } = require("./kennel");
+const { Pet } = require("./pet");
+const { Owner } = require("./owner");
 
 module.exports = {
   Kennel,
   Pet,
-  kennelSchemas,
-  petSchemas,
+  Owner,
+  // kennelSchemas,
+  // petSchemas,
 };

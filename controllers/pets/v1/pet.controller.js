@@ -3,7 +3,7 @@ const { Pet } = require("../../../models");
 
 async function createPet(req, res, next) {
   const { nickname, age, owner, kennel, birthday } = req.body;
-  if (!nickname) {
+  if (!nickname || !owner || !kennel) {
     return next(HttpError(400, "missing required name field"));
   }
   const newPet = await Pet.create({
@@ -17,8 +17,8 @@ async function createPet(req, res, next) {
 }
 
 const getPetById = async (req, res) => {
-  const { petlId } = req.params;
-  const pet = await Pet.findById(petlId);
+  const { id } = req.params;
+  const pet = await Pet.findById(id);
   if (!pet) {
     return next(HttpError(404, "Pet not found"));
   }
@@ -33,8 +33,8 @@ async function getAllPets(req, res) {
 }
 
 const deletePetById = async (req, res) => {
-  const { petId } = req.params;
-  const pet = await Pet.findByIdAndRemove(petId);
+  const { id } = req.params;
+  const pet = await Pet.findByIdAndRemove(id);
   if (!pet) {
     return next(HttpError(404, "Pet not found"));
   }

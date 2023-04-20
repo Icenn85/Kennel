@@ -1,21 +1,14 @@
 const express = require("express");
-const ctrl = require("../../../../controllers/index");
-const { kennelSchemas } = require("../../../../models");
-const {
-  validateBody,
-  isValidId,
-} = require("../../../../config");
+const ctrl = require("../../../../controllers/kennels/kennel.controller");
+// const { kennelSchemas } = require("../../../../models");
+
 
 const router = express.Router();
 
-router.post(
-  "/",
-  validateBody(kennelSchemas.addKennelSchema),
-  ctrl.createKennel
-);
-router.get("/:id", isValidId, ctrl.getKennelById);
+router.post("/", ctrl.createKennel);
+router.get("/:id", ctrl.getKennelById);
 router.get("/", ctrl.getAllKennels);
-router.delete("/:id", isValidId, ctrl.deleteKennelById);
+router.delete("/:id", ctrl.deleteKennelById);
 router.delete("/", ctrl.deleteAllKennels);
 router.get("/:id/pets", ctrl.findAllPetsInKennel);
 

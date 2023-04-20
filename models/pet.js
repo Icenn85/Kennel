@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const Joi = require("joi");
+// const Joi = require("joi");
 
 const dateRegexp = /^\d{2}-\d{2}-\d{4}$/;
 
@@ -16,12 +16,12 @@ const petSchema = new Schema(
     owner: {
       type: Schema.Types.ObjectId,
       ref: "Owner",
-      required: true,
+      // required: true,
     },
     kennel: {
       type: Schema.Types.ObjectId,
       ref: "Kennel",
-      required: true,
+      // required: true,
     },
     birthday: {
       type: String,
@@ -35,17 +35,17 @@ const petSchema = new Schema(
 
 const Pet = model("pet", petSchema);
 
-const addPetSchema = Joi.object({
-  nickname: Joi.string().required(),
-  age: Joi.number(),
-  birthday: Joi.string().required(),
-});
+// const addPetSchema = Joi.object({
+//   nickname: Joi.string().required(),
+//   age: Joi.number(),
+//   birthday: Joi.string().required(),
+// });
 
-const petSchemas = {
-  addPetSchema,
-};
+// const petSchemas = {
+//   addPetSchema,
+// };
 
 module.exports = {
   Pet,
-  petSchemas,
+//   petSchemas,
 };

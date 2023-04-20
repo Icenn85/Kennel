@@ -1,5 +1,5 @@
 const {Schema, model} = require("mongoose");
-const Joi = require("joi");
+// const Joi = require("joi");
 
 const kennelSchema = new Schema(
   {
@@ -25,17 +25,17 @@ const kennelSchema = new Schema(
 
 const Kennel = model("kennel", kennelSchema);
 
-const addKennelSchema = Joi.object({
-  name: Joi.string().required(),
-  capacity: Joi.number(),
-  address: Joi.string(),
-});
+// const addKennelSchema = Joi.object({
+//   name: Joi.string().required(),
+//   capacity: Joi.number(),
+//   address: Joi.string(),
+// });
 
-const kennelSchemas = {
-  addKennelSchema,
-};
+// const kennelSchemas = {
+//   addKennelSchema,
+// };
 
 module.exports = {
   Kennel,
-  kennelSchemas,
+  // kennelSchemas,
 };

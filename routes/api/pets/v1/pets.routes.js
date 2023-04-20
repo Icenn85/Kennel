@@ -1,18 +1,13 @@
 const express = require("express");
-const ctrl = require("../../../../controllers/index");
-const { petSchemas } = require("../../../../models");
-const { validateBody, isValidId } = require("../../../../config");
+const ctrl = require("../../../../controllers/pets/v1/pet.controller");
+// const { petSchemas } = require("../../../../models");
 
 const router = express.Router();
 
-router.post(
-  "/",
-  validateBody(petSchemas.addPetSchema),
-  ctrl.createPet
-);
-router.get("/:id", isValidId, ctrl.getPetById);
+router.post("/", ctrl.createPet);
+router.get("/:id", ctrl.getPetById);
 router.get("/", ctrl.getAllPets);
-router.delete("/:id", isValidId, ctrl.deletePetById);
+router.delete("/:id",ctrl.deletePetById);
 router.delete("/", ctrl.deleteAllPets);
 
 module.exports = router;
