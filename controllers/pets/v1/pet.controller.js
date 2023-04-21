@@ -26,9 +26,7 @@ const getPetById = async (req, res) => {
 };
 
 async function getAllPets(req, res) {
-  const { limit = 5, page = 1 } = req.query;
-  const skip = (page - 1) * limit;
-  const pets = await Pet.find({}).skip(skip).limit(limit);
+  const pets = await Pet.find({});
   res.status(200).json(pets);
 }
 

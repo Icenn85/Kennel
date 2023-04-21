@@ -25,9 +25,7 @@ const getKennelById = async (req, res) => {
 };
 
 async function getAllKennels(req, res) {
-  const { limit = 5, page = 1 } = req.query;
-  const skip = (page - 1) * limit;
-  const kennels = await Kennel.find({}).skip(skip).limit(limit);
+  const kennels = await Kennel.find({});
   res.status(200).json(kennels);
 }
 

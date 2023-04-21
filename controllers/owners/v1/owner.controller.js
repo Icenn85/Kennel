@@ -26,9 +26,7 @@ const getOwnerById = async (req, res) => {
 };
 
 async function getAllOwners(req, res) {
-  const { limit = 5, page = 1 } = req.query;
-  const skip = (page - 1) * limit;
-  const owners = await Owner.find({}).skip(skip).limit(limit);
+  const owners = await Owner.find({});
   res.status(200).json(owners);
 }
 
