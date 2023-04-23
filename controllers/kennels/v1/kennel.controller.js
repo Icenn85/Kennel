@@ -1,26 +1,23 @@
-const { HttpError, tryCatchWrapper } = require("../../helpers");
-const { Kennel } = require("../../models/index");
-const { Pet } = require("../../models/index");
-
+const { HttpError, tryCatchWrapper } = require("../../../helpers");
+const { Kennel } = require("../../../models/index");
+const { Pet } = require("../../../models/index");
 
 async function createKennel(req, res, next) {
   try {
     const { name, capacity, pets, address } = req.body;
-   if (!name || !pets) {
-     return next(HttpError(400, "missing required field"));
-  }
-  const newKennel = await Kennel.create({
-    name,
-    capacity,
-    pets,
-    address,
-  });
-  res.status(201).json(newKennel);
-    
+    if (!name || !pets) {
+      return next(HttpError(400, "missing required field"));
+    }
+    const newKennel = await Kennel.create({
+      name,
+      capacity,
+      pets,
+      address,
+    });
+    res.status(201).json(newKennel);
   } catch (error) {
     next(error);
   }
-  
 }
 
 const getKennelById = async (req, res, next) => {
@@ -79,7 +76,7 @@ const addPetToKennel = async (req, res, next) => {
     if (!kennel) {
       return next(HttpError(404, "Pets not included"));
     }
-    return res.status(200).json(kennel);    
+    return res.status(200).json(kennel);
   } catch (error) {
     next(error);
   }

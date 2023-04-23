@@ -1,7 +1,6 @@
 const express = require("express");
-const ctrl = require("../../../../controllers/kennels/kennel.controller");
+const ctrl = require("../../../../controllers/kennels/v1/kennel.controller");
 // const { kennelSchemas } = require("../../../../models");
-
 
 const router = express.Router();
 
@@ -13,7 +12,5 @@ router.delete("/", ctrl.deleteAllKennels);
 router.get("/:id/pets", ctrl.findAllPetsInKennel);
 router.patch("/:kennelId/:petId", ctrl.addPetToKennel);
 router.delete("/:kennelId/:petId", ctrl.removePetfromKennel);
-
-
 
 module.exports = router;
