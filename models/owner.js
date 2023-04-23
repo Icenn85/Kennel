@@ -12,11 +12,11 @@ const ownerSchema = new Schema(
     age: {
       type: Number,
     },
-    pets: {
+    pets: [{
       type: Schema.Types.ObjectId,
       ref: "Pet",
     //   required: true,
-    },
+    }],
     birthday: {
       type: String,
       // 19-09-1985
@@ -30,7 +30,7 @@ const ownerSchema = new Schema(
   { versionKey: false, timestamps: true }
 );
 
-const Owner = model("owner", ownerSchema);
+const Owner = model("Owner", ownerSchema);
 
 module.exports = {
   Owner,

@@ -1,21 +1,11 @@
-const dotenv = require("dotenv");
-const mongoose = require("mongoose");
 const app = require("../app");
+const http = require("http");
 
-dotenv.config();
+const { port } = 3000;
 
-const { HOST_URI } = process.env;
-mongoose.set("strictQuery", true);
+app.set("port", port);
+const server = http.createServer(app);
 
-mongoose
-  .connect(HOST_URI)
-  .then(
-    app.listen(3000, () => {
-      console.log("App listening on port 3000!");
-    })
-  )
-  .catch((error) => {
-    console.log(error.message);
-    process.exit(1);
-  });
+server.listen(port);
+
 

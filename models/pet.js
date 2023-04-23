@@ -33,7 +33,7 @@ const petSchema = new Schema(
   { versionKey: false, timestamps: true }
 );
 
-const Pet = model("pet", petSchema);
+const Pet = model("Pet", petSchema);
 
 // const addPetSchema = Joi.object({
 //   nickname: Joi.string().required(),

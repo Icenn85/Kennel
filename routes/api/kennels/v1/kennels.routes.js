@@ -11,6 +11,9 @@ router.get("/", ctrl.getAllKennels);
 router.delete("/:id", ctrl.deleteKennelById);
 router.delete("/", ctrl.deleteAllKennels);
 router.get("/:id/pets", ctrl.findAllPetsInKennel);
+router.patch("/:kennelId/:petId", ctrl.addPetToKennel);
+router.delete("/:kennelId/:petId", ctrl.removePetfromKennel);
+
 
 
 module.exports = router;

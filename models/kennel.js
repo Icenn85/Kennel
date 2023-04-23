@@ -11,11 +11,11 @@ const kennelSchema = new Schema(
     capacity: {
       type: Number,
     },
-    pets: {
+    pets: [{
       type: Schema.Types.ObjectId,
       ref: "Pet",
       required: true,
-    },
+    }],
     address: {
       type: String,
     },
@@ -23,7 +23,7 @@ const kennelSchema = new Schema(
   { versionKey: false, timestamps: true }
 );
 
-const Kennel = model("kennel", kennelSchema);
+const Kennel = model("Kennel", kennelSchema);
 
 // const addKennelSchema = Joi.object({
 //   name: Joi.string().required(),
