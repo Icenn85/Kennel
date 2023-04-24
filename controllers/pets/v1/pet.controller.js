@@ -2,22 +2,22 @@ const { HttpError, tryCatchWrapper } = require("../../../helpers");
 const { Pet } = require("../../../models");
 
 async function createPet(req, res, next) {
-  const { nickname, age, owner, kennel, birthday } = req.body;
+  const { nickname, age, birthday } = req.body;
+  const { _id } = req.owner;
   if (!nickname ) {
     return next(HttpError(400, "missing required name field"));
   }
   const newPet = await Pet.create({
     nickname,
     age,
-    owner,
-    kennel,
+    kennel: _id,
     birthday,
+    owner: _id,
   });
   res.status(201).json(newPet);
 }
 
 const getPetById = async (req, res, next) => {
-  const { id } = req.params;
   const pet = await Pet.findById(id).lean();
   if (!pet) {
     return next(HttpError(404, "Pet not found"));
@@ -26,7 +26,13 @@ const getPetById = async (req, res, next) => {
 };
 
 async function getAllPets(req, res) {
-  const pets = await Pet.find({}).lean();
+  const { _id: owner } = req.owner;
+  const { page = 1, limit = 5 } = req.query;
+  const skip = (page - 1) * limit;
+  const pets = await Pet.find({ owner }, "-createdAt -updatedAt", {
+    skip,
+    limit,
+  }).populate("owner", "name email").lean();
   res.status(200).json(pets);
 }
 

@@ -3,12 +3,13 @@ const mongoose = require("mongoose");
 
 const { Kennel } = require("./kennel");
 const { Pet } = require("./pet");
-const { Owner } = require("./owner");
+const { Owner, ownerSchemas } = require("./owner");
 
 module.exports = {
   Kennel,
   Pet,
   Owner,
+  ownerSchemas,
   // kennelSchemas,
   // petSchemas,
 };

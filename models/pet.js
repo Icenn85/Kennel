@@ -16,12 +16,12 @@ const petSchema = new Schema(
     owner: {
       type: Schema.Types.ObjectId,
       ref: "Owner",
-      // required: true,
+      required: true,
     },
     kennel: {
       type: Schema.Types.ObjectId,
       ref: "Kennel",
-      // required: true,
+      required: true,
     },
     birthday: {
       type: String,
