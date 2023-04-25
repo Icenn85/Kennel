@@ -73,7 +73,7 @@ const addPetToOwner = async (req, res, next) => {
       return next(HttpError(404, "Pet not found"));
     }
     const owner = await Owner.findOneAndUpdate(
-      { ownerId },
+      { _id: ownerId },
       { $push: { pets: pet } },
       { new: true }
     );
