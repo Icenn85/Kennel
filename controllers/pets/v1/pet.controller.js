@@ -26,14 +26,12 @@ const getPetById = async (req, res, next) => {
 };
 
 async function getAllPets(req, res) {
-  const ownerId = req.owner._id;
   const { page = 1, limit = 5 } = req.query;
   const skip = (page - 1) * limit;
-  const pets = await Pet.find({ ownerId }, "-createdAt -updatedAt", {
+  const pets = await Pet.find({}, "-createdAt -updatedAt", {
     skip,
     limit,
   })
-    .populate("owner", "name email")
     .lean();
   res.status(200).json(pets);
 }

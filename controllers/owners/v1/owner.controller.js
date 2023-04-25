@@ -30,7 +30,7 @@ async function getAllOwners(req, res) {
   const ownerId = req.owner._id;
   const { page = 1, limit = 10 } = req.query;
   const skip = (page - 1) * limit;
-  const owners = await Owner.find({ ownerId }, "-createdAt -updatedAt", {
+  const owners = await Owner.find({ _id: ownerId }, "-createdAt -updatedAt", {
     skip,
     limit,
   }).lean();
@@ -92,7 +92,7 @@ const removePetfromOwner = async (req, res, next) => {
     const ownerId = req.owner._id;
 
     const owner = await Owner.findOneAndUpdate(
-      { ownerId },
+      { _id: ownerId },
       { $pull: { pets: petId } },
       { new: true }
     );
