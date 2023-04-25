@@ -1,6 +1,8 @@
 const {Schema, model} = require("mongoose");
 // const Joi = require("joi");
 
+const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
 const kennelSchema = new Schema(
   {
     name: {
@@ -11,11 +13,13 @@ const kennelSchema = new Schema(
     capacity: {
       type: Number,
     },
-    pets: [{
-      type: Schema.Types.ObjectId,
-      ref: "Pet",
-      required: true,
-    }],
+    pets: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Pet",
+        required: true,
+      },
+    ],
     address: {
       type: String,
     },

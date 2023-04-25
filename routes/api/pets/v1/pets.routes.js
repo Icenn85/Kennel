@@ -6,9 +6,9 @@ const { auth } = require("../../../../helpers/index");
 const router = express.Router();
 
 router.post("/", auth, ctrl.createPet);
-router.get("/:id", auth, ctrl.getPetById);
-router.get("/", auth, ctrl.getAllPets);
-router.delete("/:id", auth, ctrl.deletePetById);
-router.delete("/", auth, ctrl.deleteAllPets);
+router.get("/:id", ctrl.getPetById);
+router.get("/", ctrl.getAllPets);
+router.delete("/:id", ctrl.deletePetById);
+router.delete("/", ctrl.deleteAllPets);
 
 module.exports = router;

@@ -27,7 +27,13 @@ const getOwnerById = async (req, res, next) => {
 };
 
 async function getAllOwners(req, res) {
-  const owners = await Owner.find({}).lean();
+  const ownerId = req.owner._id;
+  const { page = 1, limit = 10 } = req.query;
+  const skip = (page - 1) * limit;
+  const owners = await Owner.find({ ownerId }, "-createdAt -updatedAt", {
+    skip,
+    limit,
+  }).lean();
   res.status(200).json(owners);
 }
 
@@ -59,14 +65,15 @@ const findAllPetsSameOwner = async (req, res, next) => {
 
 const addPetToOwner = async (req, res, next) => {
   try {
-    const { petId, ownerlId } = req.params;
+    const { petId } = req.params;
+    const ownerId = req.owner._id;
 
     const pet = await Pet.findById(petId).lean();
     if (!pet) {
       return next(HttpError(404, "Pet not found"));
     }
     const owner = await Owner.findOneAndUpdate(
-      { id: ownerlId },
+      { ownerId },
       { $push: { pets: pet } },
       { new: true }
     );
@@ -81,10 +88,11 @@ const addPetToOwner = async (req, res, next) => {
 
 const removePetfromOwner = async (req, res, next) => {
   try {
-    const { petId, ownerlId } = req.params;
+    const { petId } = req.params;
+    const ownerId = req.owner._id;
 
     const owner = await Owner.findOneAndUpdate(
-      { id: ownerlId },
+      { ownerId },
       { $pull: { pets: petId } },
       { new: true }
     );
